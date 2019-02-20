@@ -1,0 +1,30 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thesuperankes/TCCApi.git"
+  },
+  "keywords": [
+    "TCC"
+  ],
+  "author": "tsagames",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thesuperankes/TCCApi/issues"
+  },
+  "homepage": "https://github.com/thesuperankes/TCCApi#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.10",
+    "pug": "^2.0.3",
+    "request": "^2.88.0"
+  }
+}

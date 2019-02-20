@@ -1,0 +1,17 @@
+html
+  head
+    title= title
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css')
+  body
+
+    div.container
+      h1 Bienvenidos
+      br
+      form(action='/process')
+        div.form-group
+          label(for='ciudad') Ciudad Destino:
+          select#CityDest.form-control(name='CityDest')
+            each item in cities
+              option(value=item.id) #{item.descripcion}
+
+          button.btn.btn-primary(type='submit') Enviar
