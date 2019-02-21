@@ -3,9 +3,16 @@ var app = express();
 var request = require("request");
 var bodyParser = require("body-parser");
 var pug = require('pug');
+var fs = require('fs');
+
+var obj = JSON.parse(fs.readFileSync('Assets/departments.json','utf8'));
 
 var TccEndPoint = "https://tccrestify-dot-tcc-cloud.appspot.com/";
 var Token = 'D0582E1C-BF22-413B-BA65-A3712F38B399';
+
+var onlyUnique = (value, index, self)=>{
+    return self.indexOf(value) === index;
+}
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -13,6 +20,29 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.set('view engine','pug');
+
+app.post('/municipios',(req,res)=>{
+    console.log(req.body.CodigoMunicipio);
+
+    var items = obj.filter((item)=>{
+        return item.CodigoMunicipio == req.body.CodigoMunicipio
+    });
+
+    res.send(items);
+});
+
+app.post('/departments',(req,res)=>{
+
+    var items = Array.from(new Set(obj.map(s => s.Departamento)))
+    .map(Departamento => {
+        return {
+            name : Departamento,
+            id: obj.find(s => s.Departamento === Departamento).CodigoMunicipio
+        };
+    });
+
+    res.send(items);
+});
 
 app.post('/cities', (req, res) => {
 
